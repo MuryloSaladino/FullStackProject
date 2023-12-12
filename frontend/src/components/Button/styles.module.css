@@ -1,0 +1,53 @@
+.primary{
+    width: 100%;
+    height: 48px;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    font-size: 1rem;
+    color: var(--grey-0);
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: var(--primary);
+}
+
+.grey{
+    width: 100%;
+    height: 48px;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    font-size: 1rem;
+    color: var(--grey-0);
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: var(--grey-1);
+}
+
+.small{
+    height: 48px;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    font-size: 1rem;
+    color: var(--grey-0);
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+
+    width: max-content;
+    background-color: var(--grey-3);
+}
