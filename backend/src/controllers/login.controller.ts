@@ -5,5 +5,5 @@ export const loginController = async (req:Request, res:Response) => {
 
     const service = await loginService(req.body)
 
-    return res.status(200).json({token: service})
+    return res.status(200).json(service)
 }

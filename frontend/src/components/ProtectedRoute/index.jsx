@@ -5,6 +5,5 @@ import { Navigate, Outlet } from "react-router-dom";
 export function ProtectedRoute() {
     const { user } = useContext(UserContext)
 
-    // return user ? <Outlet/> : <Navigate to="/" />
-    return <Outlet/>
+    return user ? <Outlet/> : <Navigate to="/" />
 }

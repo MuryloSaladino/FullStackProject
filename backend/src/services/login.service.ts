@@ -33,5 +33,5 @@ export const loginService = async (payload:TLogin) => {
         }
     )
 
-    return token
+    return {token: token, userId: user.id}
 }

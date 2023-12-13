@@ -6,10 +6,10 @@ import { Router } from "express";
 
 const contactsRouter:Router = Router()
 
-contactsRouter.post('/:id', validateBody(postContactSchema), verifyUserId, verifyEmail, postContactController)
+contactsRouter.post('/:id', validateBody(postContactSchema), validateToken, verifyUserId, verifyEmail, postContactController)
 contactsRouter.get('/:id', validateToken, getContactsController)
-contactsRouter.patch('/:id', validateBody(patchContactSchema), verifyUserId, validateToken, verifyPatchAuth, patchContactController)
-contactsRouter.delete('/:id', verifyUserId, validateToken, validateAdmin, deleteContactController)
+contactsRouter.patch('/:id', validateBody(patchContactSchema), validateToken, patchContactController)
+contactsRouter.delete('/:id', validateToken, deleteContactController)
 
 
 export default contactsRouter
