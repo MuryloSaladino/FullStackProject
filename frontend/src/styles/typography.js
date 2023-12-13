@@ -1,17 +1,23 @@
 import styled from "styled-components";
 
 
-export const Title1 = styled.h1`
+export const TitleBig = styled.h1`
+    font-size: 1.5rem;
+    font-weight: var(--bold);
+    color: ${({color}) => color ? color : "var(--grey-0)"};
+`
+
+export const Title1 = styled.h2`
     font-size: 1.125rem;
     font-weight: var(--bold);
     color: ${({color}) => color ? color : "var(--grey-0)"};
 `
-export const Title2 = styled.h2`
+export const Title2 = styled.h3`
     font-size: 1rem;
     font-weight: var(--bold);
     color: ${({color}) => color ? color : "var(--grey-0)"};
 `
-export const Title3 = styled.h3`
+export const Title3 = styled.h4`
     font-size: 0.875rem;
     font-weight: var(--bold);
     color: ${({color}) => color ? color : "var(--grey-0)"};

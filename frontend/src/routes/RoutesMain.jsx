@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "../pages/Login";
 import { RegisterPage } from "../pages/Register";
 import { Dashboard } from "../pages/Dashboard";
-import { TechProvider } from "../providers/TechContext";
+import { ContactProvider } from "../providers/ContactsContext";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 
 export function RoutesMain() {
@@ -15,7 +15,7 @@ export function RoutesMain() {
             <Route path="/dashboard" element={<ProtectedRoute/>} >
                 <Route
                     index
-                    element={<TechProvider><Dashboard/></TechProvider>}
+                    element={<ContactProvider><Dashboard/></ContactProvider>}
                 />
             </Route>
 

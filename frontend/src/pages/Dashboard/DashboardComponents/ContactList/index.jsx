@@ -3,20 +3,20 @@ import { Title2, Title3 } from "../../../../styles/typography";
 
 import plus from "../../../../assets/plus.svg"
 
-import { TechCard } from "./TechCard";
-import { StyledTechContainer, StyledTechList } from "./styles";
+import { ContactCard } from "./ContactCard";
+import { StyledContactContainer, StyledContactList } from "./styles";
 
-import { TechContext } from "../../../../providers/TechContext";
+import { ContactContext } from "../../../../providers/ContactsContext";
 import { useContext } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 
-export function TechList() {
+export function ContactList() {
 
-    const { userData, modalRef } = useContext(TechContext)
+    const { userData, modalRef } = useContext(ContactContext)
 
     return(
-        <StyledTechContainer>
+        <StyledContactContainer>
             <div>
                 <Title2>Tecnologias</Title2>
                 <Button small onClick={() => {modalRef.current.showModal()}} >
@@ -24,15 +24,15 @@ export function TechList() {
                 </Button>
             </div>
 
-            <StyledTechList>
+            <StyledContactList>
                 {
-                    userData.techs.length > 0 ?
-                    userData.techs.map(tech => 
-                        <TechCard key={uuidv4()} tech={tech} />
+                    userData.contacts.length > 0 ?
+                    userData.contacts.map(contact => 
+                        <ContactCard key={uuidv4()} contact={contact} />
                     ) :
                     <li><Title3>Você ainda não adiconou nenhuma tecnologia</Title3></li>
                 }
-            </StyledTechList>
-        </StyledTechContainer>
+            </StyledContactList>
+        </StyledContactContainer>
     )
 }

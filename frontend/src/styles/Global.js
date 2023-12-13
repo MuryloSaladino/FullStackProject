@@ -3,9 +3,9 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
 
     :root{
-        --primary: #FF577F;
-        --primary-focus: #FF427F;
-        --primary-disabled: #59323F;
+        --primary: #6992FA;
+        --primary-focus: #69C0FA;
+        --primary-disabled: #7BA9C7;
 
         --grey-0: #F8F9FA;
         --grey-1: #868E96;
@@ -15,7 +15,6 @@ export const GlobalStyles = createGlobalStyle`
 
         --sucess: #3FE864;
         --negative: #E83F5B;
-
 
         --regular: 400;
         --medium: 500;

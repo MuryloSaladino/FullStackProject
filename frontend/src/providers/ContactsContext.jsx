@@ -1,24 +1,22 @@
 import { useRef, useState, useEffect, createContext } from "react";
 import { toast } from "react-toastify";
-import { kenzieHub } from "../service/api";
-import { useNavigate } from "react-router-dom";
+import { api } from "../service/api";
 
-export const TechContext = createContext({})
+export const ContactContext = createContext({})
 
-export function TechProvider({children}) {
+export function ContactProvider({children}) {
 
     const [userData, setUserData] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [updateTechs, setUpdateTechs] = useState(false)
-    const [currentTech, setCurrentTech] = useState({title: "", status: ""})
+    const [updateContacts, setUpdateContacts] = useState(false)
+    const [currentContact, setCurrentContact] = useState({title: "", status: ""})
     const modalRef = useRef(null)
     const modalEditRef = useRef(null)
-    const navigate = useNavigate()
 
     useEffect(() => {
         async function checkAuth() {
             try {
-                const {data} = await kenzieHub.get("profile", {
+                const {data} = await api.get(`users/${localStorage.getItem("@USERID")}`, {
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem("@TOKEN")}`
                     }
@@ -32,11 +30,11 @@ export function TechProvider({children}) {
             }
         }
         checkAuth()
-    }, [updateTechs])
+    }, [updateContacts])
 
     return(
-        <TechContext.Provider value={{userData, loading, updateTechs, setUpdateTechs, currentTech, setCurrentTech, modalRef, modalEditRef}}>
+        <ContactContext.Provider value={{userData, loading, updateContacts, setUpdateContacts, currentContact, setCurrentContact, modalRef, modalEditRef}}>
             {children}
-        </TechContext.Provider>
+        </ContactContext.Provider>
     )
 }

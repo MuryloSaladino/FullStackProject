@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledTechContainer = styled.main`
+export const StyledContactContainer = styled.main`
     width: 100%;
     padding: 11px 5px;
 
@@ -24,7 +24,7 @@ export const StyledTechContainer = styled.main`
     }
 `
 
-export const StyledTechList = styled.ul`
+export const StyledContactList = styled.ul`
     width: 100%;
     max-width: 780px;
 

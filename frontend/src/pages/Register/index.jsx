@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerSchema } from "./registerSchema";
 
-import { kenzieHub } from "../../service/api";
+import { api } from "../../service/api";
 import { useNavigate } from "react-router-dom";
 
 export function RegisterPage() {
@@ -22,26 +22,23 @@ export function RegisterPage() {
         resolver: zodResolver(registerSchema),
     })
 
-    const submit = async ({bio, contact, courseLevel, email, name, password}) => {
+    const submit = async ({contact, email, name, password}) => {
         const newUser = {
             email: email,
             password: password,
             name: name,
-            bio: bio,
             contact: contact,
-            course_module: courseLevel
+            admin: false
         }
 
         try {
-            await kenzieHub.post("/users", newUser)
+            await api.post("/users", newUser)
             toast.success("Conta criada com sucesso!", {theme: "dark"})
             navigate("/")
         } catch (err) {
             toast.error("Ops! Algo deu errado", {theme: "dark"})
         }
     }
-
-    const selectOptions = ["Primeiro Módulo", "Segundo Módulo", "Terceiro Módulo", "Quarto Módulo", "Quinto Módulo", "Sexto Módulo"]
 
     return(
         <>
@@ -58,47 +55,35 @@ export function RegisterPage() {
                         label="Nome"
                         register={register("name")}
                     />
-                    {errors.name ? <Text color="var(--grey-1)">{errors.name.message}</Text> : null}
+                    {errors.name ? <Text color="red">{errors.name.message}</Text> : null}
                     <Input
                         type="email"
                         placeholder="Digite aqui seu email"
                         label="Email"
                         register={register("email")}
                     />
-                    {errors.email ? <Text color="var(--grey-1)">{errors.email.message}</Text> : null}
+                    {errors.email ? <Text color="red">{errors.email.message}</Text> : null}
                     <Input
                         type="password"
                         placeholder="Digite aqui sua senha"
                         label="Senha"
                         register={register("password")}
                     />
-                    {errors.password ? <Text color="var(--grey-1)">{errors.password.message}</Text> : null}
+                    {errors.password ? <Text color="red">{errors.password.message}</Text> : null}
                     <Input
                         type="password"
                         placeholder="Digite novamente sua senha"
                         label="Confirmar Senha"
                         register={register("confirmation")}
                     />
-                    {errors.confirmation ? <Text color="var(--grey-1)">{errors.confirmation.message}</Text> : null}
+                    {errors.confirmation ? <Text color="red">{errors.confirmation.message}</Text> : null}
                     <Input
                         type="text"
-                        placeholder="Fale sobre você"
-                        label="Bio"
-                        register={register("bio")}
-                    />
-                    {errors.bio ? <Text color="var(--grey-1)">{errors.bio.message}</Text> : null}
-                    <Input
-                        type="text"
-                        placeholder="Opção de contato"
+                        placeholder="Telefone"
                         label="Contato"
                         register={register("contact")}
                     />
-                    {errors.contact ? <Text color="var(--grey-1)">{errors.contact.message}</Text> : null}
-                    <Select
-                        options={selectOptions}
-                        label="Selecionar módulo"
-                        register={register("courseLevel")}
-                    />
+                    {errors.contact ? <Text color="red">{errors.contact.message}</Text> : null}
                     <Button
                         type="submit"
                         disabled={errors.name || errors.email || errors.password || errors.confirmation || errors.bio || errors.contact ? true : false}

@@ -7,58 +7,58 @@ import { Button } from "../../../../components/Button";
 
 import { useForm } from "react-hook-form";
 
-import { editTechSchema } from "./editTechSchema";
+import { editContactSchema } from "./editContactSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 
-import { kenzieHub } from "../../../../service/api";
+import { api } from "../../../../service/api";
 
 import { useContext } from "react";
-import { TechContext } from "../../../../providers/TechContext";
+import { ContactContext } from "../../../../providers/ContactsContext";
 
 export function ModalEdit () {
 
     const {
-        updateTechs,
-        setUpdateTechs,
-        currentTech,
+        updateContacts,
+        setUpdateContacts,
+        currentContact,
         modalEditRef,
-    } = useContext(TechContext)
+    } = useContext(ContactContext)
 
     const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(editTechSchema),
+        resolver: zodResolver(editContactSchema),
     })
 
     const submit = async (formData) => {
         try {
-            await kenzieHub.put("users/techs/" + currentTech.id, formData, {
+            await api.patch("users/contacts/" + currentContact.id, formData, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("@TOKEN")}`
                 }
             })
-            toast.success("Tecnologia alterada", {theme: "dark"})
+            toast.success("Contato alterado", {theme: "dark"})
         } catch (err) {
             toast.error("Ops! Algo deu errado", {theme: "dark"})
         }
         finally{
-            setUpdateTechs((updateTechs ? false : true))
+            setUpdateContacts((updateContacts ? false : true))
             modalEditRef.current.close()
         }
     }
 
-    async function deleteTech() {
+    async function deleteContact() {
         try {
-            await kenzieHub.delete("users/techs/" + currentTech.id, {
+            await api.delete("users/contacts/" + currentContact.id, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("@TOKEN")}`
                 }
             })
-            toast.success("Tecnologia deletada", {theme: "dark"})
+            toast.success("Contato deletado", {theme: "dark"})
         } catch (error) {
             toast.error("Ops! Algo deu errado", {theme: "dark"})
         }
         finally{
-            setUpdateTechs((updateTechs ? false : true))
+            setUpdateContacts((updateContacts ? false : true))
             modalEditRef.current.close()
         }
     }
@@ -74,12 +74,16 @@ export function ModalEdit () {
                 <Title2 color="var(--grey-1)" onClick={() => modalEditRef.current.close()} >X</Title2>
 
                 <Form onSubmit={handleSubmit(submit)} >
-                    <Input type="text" label="Nome do projeto" value={currentTech.title} readonly />
-                    {errors.title ? <Text color="var(--grey-1)">{errors.title.message}</Text> : null}
-                    <Select options={["Iniciante", "Intermediário", "Avançado"]} label="Status" register={register("status")} />
+                    <Input type="text" label="Nome" placeholder="Digite aqui o nome" register={register("name")} />
+                    {errors.name ? <Text color="var(--grey-1)">{errors.name.message}</Text> : null}
+                    <Input type="text" label="Nome" placeholder="Digite aqui o email" register={register("email")} />
+                    {errors.email ? <Text color="var(--grey-1)">{errors.email.message}</Text> : null}
+                    <Input type="text" label="Nome" placeholder="Digite aqui o phone" register={register("phone")} />
+                    {errors.phone ? <Text color="var(--grey-1)">{errors.phone.message}</Text> : null}
+                    <Button type="submit">Cadastrar Contato</Button>
                     <StyledBottomForm>
                         <Button type="submit">Salvar alterações</Button>
-                        <Button grey type="button" onClick={deleteTech} >Excluir</Button>
+                        <Button grey type="button" onClick={deleteContact}>Excluir</Button>
                     </StyledBottomForm>
                 </Form>
             </StyledModalInterior>

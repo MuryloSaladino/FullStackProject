@@ -1,8 +1,7 @@
-import logo from "../../assets/logo.svg"
-import { StyledLogo } from "./styles"
+import { TitleBig } from "../../styles/typography"
 
 export function Logo() {
     return(
-        <StyledLogo src={logo} alt="Kenzie Hub" />
+        <TitleBig color="#6992FA">Klients</TitleBig>
     )
 }

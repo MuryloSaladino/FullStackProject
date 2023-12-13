@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "./loginSchema";
 import { useNavigate } from "react-router-dom";
 
-import { kenzieHub } from "../../service/api";
+import { api } from "../../service/api";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 
@@ -26,10 +26,10 @@ export function LoginPage() {
 
     const submit = async (formData) => {
         try {
-            const {data} = await kenzieHub.post("/sessions", formData)
-            setUser(data.user.id)
+            const {data} = await api.post("login", formData)
+            setUser(data.userId)
             localStorage.setItem("@TOKEN", data.token)
-            localStorage.setItem("@USERID", data.user.id)
+            localStorage.setItem("@USERID", data.userId)
             toast.success("Login realizado com sucesso", {theme: "dark"})
             navigate("/dashboard")
         } catch (err) {
@@ -48,14 +48,14 @@ export function LoginPage() {
                         label="Email"
                         register={register("email")}
                     />
-                    {errors.email ? <Text color="var(--grey-1)">{errors.email.message}</Text> : null}
+                    {errors.email ? <Text color="red">{errors.email.message}</Text> : null}
                     <Input
                         type="password"
                         placeholder="Digite aqui sua senha"
                         label="Senha"
                         register={register("password")}
                     />
-                    {errors.password ? <Text color="var(--grey-1)">{errors.password.message}</Text> : null}
+                    {errors.password ? <Text color="red">{errors.password.message}</Text> : null}
                     <Button type="submit">Entrar</Button>
 
                     <div>

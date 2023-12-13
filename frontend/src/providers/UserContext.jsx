@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { kenzieHub } from "../service/api";
+import { api } from "../service/api";
 import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({})
@@ -15,7 +15,7 @@ export function UserProvider({children}) {
             const userID = localStorage.getItem("@USERID")
 
             if(token && userID) {
-                const {data} = await kenzieHub.get("profile", {
+                const {data} = await api.get(`users/${userID}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

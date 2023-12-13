@@ -14,7 +14,7 @@ export function Header() {
         <StyledHeader>
             <div>
                 <Logo/>
-                <Button small onClick={endSession} >Sair</Button>
+                <Button small onClick={endSession}>Sair</Button>
             </div>
         </StyledHeader>
     )
