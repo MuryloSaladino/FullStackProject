@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 
 import { api } from "../../../../service/api";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ContactContext } from "../../../../providers/ContactsContext";
 
 export function ModalEdit () {
@@ -63,24 +63,29 @@ export function ModalEdit () {
         }
     }
 
+    useEffect(() => {
+        let inputs = document.querySelectorAll("input")
+        inputs[3].value = currentContact.name
+        inputs[4].value = currentContact.email
+        inputs[5].value = currentContact.phone
+    }, [currentContact])
     
     return(
         <StyledDialog ref={modalEditRef} onClick={() => modalEditRef.current.close()}>
             <StyledModalInterior onClick={(e) => e.stopPropagation()}>
                 <header>
-                    <Title3>Tecnologia Detalhes</Title3>
+                    <Title3>Contato Detalhes</Title3>
                 </header>
 
                 <Title2 color="var(--grey-1)" onClick={() => modalEditRef.current.close()} >X</Title2>
 
                 <Form onSubmit={handleSubmit(submit)} >
-                    <Input type="text" label="Nome" placeholder="Digite aqui o nome" register={register("name")} />
+                    <Input type="text" label="Nome" placeholder="Digite aqui o nome" register={register("name")}/>
                     {errors.name ? <Text color="var(--grey-1)">{errors.name.message}</Text> : null}
-                    <Input type="text" label="Nome" placeholder="Digite aqui o email" register={register("email")} />
+                    <Input type="text" label="Email" placeholder="Digite aqui o email" register={register("email")}/>
                     {errors.email ? <Text color="var(--grey-1)">{errors.email.message}</Text> : null}
-                    <Input type="text" label="Nome" placeholder="Digite aqui o phone" register={register("phone")} />
+                    <Input type="text" label="Phone" placeholder="Digite aqui o phone" register={register("phone")}/>
                     {errors.phone ? <Text color="var(--grey-1)">{errors.phone.message}</Text> : null}
-                    <Button type="submit">Cadastrar Contato</Button>
                     <StyledBottomForm>
                         <Button type="submit">Salvar alterações</Button>
                         <Button grey type="button" onClick={deleteContact}>Excluir</Button>

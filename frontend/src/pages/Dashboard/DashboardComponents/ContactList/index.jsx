@@ -18,7 +18,7 @@ export function ContactList() {
     return(
         <StyledContactContainer>
             <div>
-                <Title2>Tecnologias</Title2>
+                <Title2>Contatos</Title2>
                 <Button small onClick={() => {modalRef.current.showModal()}} >
                     <img src={plus} />
                 </Button>
@@ -30,7 +30,7 @@ export function ContactList() {
                     userData.contacts.map(contact => 
                         <ContactCard key={uuidv4()} contact={contact} />
                     ) :
-                    <li><Title3>Você ainda não adiconou nenhuma tecnologia</Title3></li>
+                    <li><Title3>Você ainda não adiconou nenhum contato</Title3></li>
                 }
             </StyledContactList>
         </StyledContactContainer>

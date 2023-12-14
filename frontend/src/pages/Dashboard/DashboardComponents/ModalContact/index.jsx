@@ -34,7 +34,7 @@ export function Modal() {
                     "Authorization": `Bearer ${localStorage.getItem("@TOKEN")}`
                 }
             })
-            toast.success("Tecnologia cadastrada", {theme: "dark"})
+            toast.success("Contato cadastrado", {theme: "dark"})
         }catch (err) {
             toast.error("Ops! Algo deu errado", {theme: "dark"})
         }
@@ -46,7 +46,7 @@ export function Modal() {
 
     
     return(
-        <StyledDialog ref={modalRef} onClick={() => ref.current.close()}>
+        <StyledDialog ref={modalRef} onClick={() => modalRef.current.close()}>
             <StyledModalInterior onClick={(e) => e.stopPropagation()}>
                 <header>
                     <Title3>Cadastrar Contato</Title3>
@@ -57,9 +57,9 @@ export function Modal() {
                 <Form onSubmit={handleSubmit(submit)} >
                     <Input type="text" label="Nome" placeholder="Digite aqui o nome" register={register("name")} />
                     {errors.name ? <Text color="var(--grey-1)">{errors.name.message}</Text> : null}
-                    <Input type="text" label="Nome" placeholder="Digite aqui o email" register={register("email")} />
+                    <Input type="text" label="Email" placeholder="Digite aqui o email" register={register("email")} />
                     {errors.email ? <Text color="var(--grey-1)">{errors.email.message}</Text> : null}
-                    <Input type="text" label="Nome" placeholder="Digite aqui o phone" register={register("phone")} />
+                    <Input type="text" label="Phone" placeholder="Digite aqui o phone" register={register("phone")} />
                     {errors.phone ? <Text color="var(--grey-1)">{errors.phone.message}</Text> : null}
                     <Button type="submit">Cadastrar Contato</Button>
                 </Form>

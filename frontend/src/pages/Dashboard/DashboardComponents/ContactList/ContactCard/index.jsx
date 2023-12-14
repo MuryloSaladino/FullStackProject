@@ -10,7 +10,7 @@ export function ContactCard({contact}) {
     return(
         <li onClick={() => {setCurrentContact(contact); modalEditRef.current.showModal()}}>
             <Title2>{contact.name}</Title2>
-            <Text color="var(--grey-1)">{contact.phone}  |  {contact.email}</Text>
+            <Text color="var(--grey-1)">Phone: {contact.phone}  |  Email: {contact.email}</Text>
         </li>
     )
 }

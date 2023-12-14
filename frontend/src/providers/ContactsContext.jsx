@@ -15,19 +15,33 @@ export function ContactProvider({children}) {
 
     useEffect(() => {
         async function checkAuth() {
+            let userDataResponse
+
             try {
                 const {data} = await api.get(`users/${localStorage.getItem("@USERID")}`, {
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem("@TOKEN")}`
                     }
                 })
-                setUserData(data)
+                userDataResponse = {...data}
+            } catch (error) {
+                toast.error("Ops! Algo deu errado", {theme: "dark"})
+            }
+            try {
+                const {data} = await api.get(`users/contacts/${localStorage.getItem("@USERID")}`, {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("@TOKEN")}`
+                    }
+                })
+                userDataResponse = {contacts: data, ...userDataResponse}
             } catch (error) {
                 toast.error("Ops! Algo deu errado", {theme: "dark"})
             }
             finally{
                 setLoading(false)
             }
+
+            setUserData(userDataResponse)
         }
         checkAuth()
     }, [updateContacts])
