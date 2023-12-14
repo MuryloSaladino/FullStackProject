@@ -4,7 +4,7 @@
 
 1. Faça download do repositório, seja por Git Clone ou ZIP
 
-2. Crie um .env na pasta backend seguindo o .env.example
+2. Crie um .env na pasta backend seguindo o .env.example (junto a isso, você precisará de um servidor postgres)
 
 3. Abra o terminal na pasta principal do projeto e rode os seguintes comandos:
 
