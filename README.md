@@ -24,4 +24,6 @@ npm install
 npm run dev
 ```
 
-5. Pronto! O site deve estar rodando em http://localhost:5173/
+5. Pronto! O site estará rodando em http://localhost:5173/
+
+6. Para acessar a documentação da REST API, acesse http://localhost:3000/api-docs/, depois que o servidor estiver rodando
