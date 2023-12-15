@@ -23,13 +23,15 @@ export function RegisterPage() {
     })
 
     const submit = async ({contact, email, name, password}) => {
+
         const newUser = {
             email: email,
             password: password,
             name: name,
-            contact: contact,
+            phone: contact,
             admin: false
         }
+        console.log(newUser)
 
         try {
             await api.post("/users", newUser)
@@ -86,7 +88,7 @@ export function RegisterPage() {
                     {errors.contact ? <Text color="red">{errors.contact.message}</Text> : null}
                     <Button
                         type="submit"
-                        disabled={errors.name || errors.email || errors.password || errors.confirmation || errors.bio || errors.contact ? true : false}
+                        disabled={errors.name || errors.email || errors.password || errors.confirmation || errors.contact ? true : false}
                     >Cadastrar</Button>
                 </Form>
             </StyledMainRegister>

@@ -13,9 +13,7 @@ export const registerSchema = z.object({
         .regex(/^(?=.*[!@#$%^&*()\-=_+[\]{};':"\\|,.<>/?]).*$/, "*A senha deve conter pelo menos um caractere especial*"),
     confirmation: z.string()
         .min(1, "*Favor preencher o campo de confirmação*"),
-    bio: z.string().min(1, "*Favor preencher o campo de Bio*").trim(),
     contact: z.string().min(1, "*Favor preencher o campo de Contato*"),
-    courseLevel: z.string().min(1)
 }).refine(({password, confirmation}) => password === confirmation, {
     message: "*As senhas precisam ser iguais*",
     path: ["confirmation"]
