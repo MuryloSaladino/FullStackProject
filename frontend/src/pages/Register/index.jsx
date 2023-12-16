@@ -31,7 +31,6 @@ export function RegisterPage() {
             phone: contact,
             admin: false
         }
-        console.log(newUser)
 
         try {
             await api.post("/users", newUser)
